@@ -19,8 +19,8 @@ const metaplex = Metaplex.make(connection)
 export default function Home() {
 
   const [tokenId, setTokenId] = React.useState("")
-  const [nft, setnft] = React.useState({})
-  
+  const [nft, setnft] = React.useState<any>()
+
   const fetchNft = async () => {
     try {
     const mintAddress = new PublicKey(tokenId)
@@ -58,7 +58,7 @@ export default function Home() {
             <a href={nft.json.external_url}>{nft.json.external_url}</a>
             <h2>Traits</h2>
             <div className="grid-container">
-              {nft.json.attributes.map(item => <article key="item.trait_type" className="grid-item"><strong>{item.trait_type}:</strong>{item.value}</article>)}
+              {nft.json.attributes.map((item: any) => <article key="item.trait_type" className="grid-item"><strong>{item.trait_type}:</strong>{item.value}</article>)}
             </div>
         </div>} 
         <p>Built By <a href="https://twitter.com/tomrso">Tomrso</a></p>
