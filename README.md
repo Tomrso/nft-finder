@@ -1,38 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1>Solana NFT Finder</h1>
+This is a simple NFT finder built using Next.js, Metaplex and web3.js
 
-## Getting Started
+To use the NFT finder you need to enter your Solana NFT's 'Token Address'. You can find that by checking Solscan.
+When you press "Check NFT" your NFT details will show up all together. The details include: picture, name, description, website and traits.
 
-First, run the development server:
+<h2>How It Works</h2>
+The whole code for the app lives in the index.tsx file.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The app is connected to Solana Mainnet via an "alchemy" route as when I was trying to use "mainnet-beta" RPC it returned a "403: access is denied error". It appears Solana mainnet-beta is locked down and rate-limited to avoid abuse. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+As you enter the "Token Address" the string is stored as state in tokenId using the onChange event listner.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Once the "Check NFT" button is clicked the fetchNFT function is called. This uses metaplex.nfts().findByMint and passes a public key (has to be created using new PublicKey(tokenId)) of the tokenId to locate the NFT you are searching for. **Note:** It appears that mintaddress and token address are used interchangably on Solana and are the same thing. I think this is because the 'mint address' is the initial address that the token has and therefor remains as the 'token address' - please correct me if I'm wrong.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Once we recive the NFT data it is stored in state as "nft", if you enter a Token Id that doesnt exist the app will throw an alert to let you know that it is incorrect.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The nft object can then be accessed throughout the app and used to display data. More on what you can get from an nft here: https://github.com/metaplex-foundation/js#the-nft-model
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This was my first play using Solana and I love it. More apps to come with more funtionality. This will act as my notes if I need to remember how I did something and I will attach a detailed README to all of my apps.
