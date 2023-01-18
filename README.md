@@ -18,3 +18,5 @@ Once we recive the NFT data it is stored in state as "nft", if you enter a Token
 The nft object can then be accessed throughout the app and used to display data. More on what you can get from an nft here: https://github.com/metaplex-foundation/js#the-nft-model
 
 This was my first play using Solana and I love it. More apps to come with more funtionality. This will act as my notes if I need to remember how I did something and I will attach a detailed README to all of my apps.
+
+Deployed here: https://solana-nft-finder.vercel.app/
