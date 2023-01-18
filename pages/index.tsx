@@ -19,7 +19,7 @@ const metaplex = Metaplex.make(connection)
 export default function Home() {
 
   const [tokenId, setTokenId] = React.useState("")
-  const [nft, setnft] = React.useState(null)
+  const [nft, setnft] = React.useState({})
   
   const fetchNft = async () => {
     try {
